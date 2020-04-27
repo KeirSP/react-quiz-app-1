@@ -10,4 +10,4 @@
 * Setup Routing in App.js
 * Created component for homepage where user selects quiz configuration
 * Created component for API call
-* Created component for Question View and mapped out the questions retrivieved from the API call
+* Created component for Question View and mapped out the questions retrieved from the API call
