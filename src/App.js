@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
+import Setup from "./components/quizsetup"
+import {BrowserRouter, Switch, Route} from "react-router-dom"
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={Setup} />
+    </Switch>
+  </BrowserRouter>
   );
 }
 

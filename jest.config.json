@@ -1,0 +1,9 @@
+{   
+    "setupFiles": [
+        "<rootDir>/__tests__/setupTests.js"
+    ],
+    "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ],
+    "collectCoverage": true
+}
