@@ -8,5 +8,6 @@
 ## Day 1
 * Setup CRA & test framework (jest & enzyme)
 * Setup Routing in App.js
-* Create component for homepage where user selects quiz configuration
-* Create component for API call & question view
+* Created component for homepage where user selects quiz configuration
+* Created component for API call
+* Created component for Question View and mapped out the questions retrivieved from the API call
