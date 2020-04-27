@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 
 class Setup extends Component {
     constructor(props){
@@ -28,7 +27,15 @@ class Setup extends Component {
 
       handleSubmit(event) {
           event.preventDefault()
-
+          this.props.history.push({
+            pathname: '/quiz',
+            state: { 
+                questionAmount: this.state.questionAmount,
+                category: this.state.category,
+                difficulty: this.state.difficulty,
+                numOfPlayers: this.state.numOfPlayers
+            }
+          })
         };
 
     render() { 
@@ -81,6 +88,7 @@ class Setup extends Component {
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
+                <input type="submit" value="Start Quiz" />
             </form>
          );
     }
