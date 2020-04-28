@@ -7,9 +7,27 @@ class Question extends Component {
         this.state = {
             errorMessage: "",
             questions: [],
-            userOneAnswers: [],
-            userTwoAnswers: []
+            userAnswers: [],
+            currentPlayer: 0
          }
+         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        const numOfPlayers = this.props.location.state.numOfPlayers;
+        const currentPlayer =  this.state.currentPlayer;
+        if(currentPlayer<(numOfPlayers - 1)) {
+            event.preventDefault();
+            currentPlayer ++;
+            this.state.userAnswers[currentPlayer].push();
+            //rerender form
+        } else {
+            event.preventDefault();
+            this.props.history.push({
+                pathname: '/results'
+
+            })
+        }
     }
 
     async apiCall(){
@@ -27,7 +45,7 @@ class Question extends Component {
             this.setState({errorMessage:err})
         }
     }
-
+    
     randomSort(array){
         var currentIndex = array.length, temporaryValue, randomIndex;
         // While there remain elements to shuffle...
@@ -63,16 +81,24 @@ class Question extends Component {
             this.randomiseQuestions(response)
         })
         /* if (this.state.questions.length > 1){this.randomiseQuestions()} */
+        const numOfPlayers = this.props.location.state.numOfPlayers;
+        for (let i=0; i<numOfPlayers; i++){
+            this.state.userAnswers.push([])
+        }
+        console.log(this.state.userAnswers);
     }
 
 
     render() { 
         const questionItems = this.state.questions;
-        console.log(questionItems)
+        const numOfPlayers = this.props.location.state.numOfPlayers;
+        console.log(numOfPlayers);
+        console.log(questionItems);
         return (
             <div>
+                <form onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
-                
+
                 questionItems.map(item => (
                     <div>
                     <h5>{item.question}</h5>
@@ -87,11 +113,12 @@ class Question extends Component {
                     <input type="radio" name="question" id={item.index} value={item.incorrect_answers[2]} />
                     </div> 
                 ))
-                
+
                 :
-                <h3>Loading</h3>}
+                <h3>Loading</h3>}                
+                </form>
             </div>
-         );
+           );
     }
 }
 
