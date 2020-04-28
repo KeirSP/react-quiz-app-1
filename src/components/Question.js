@@ -7,6 +7,7 @@ class Question extends Component {
         this.state = {
             errorMessage: "",
             questions: [],
+            answers: [],
             userAnswers: [],
             currentPlayer: 0
          }
@@ -63,44 +64,44 @@ class Question extends Component {
         }
           
 
-    randomiseQuestions(apiData){
-        console.log(apiData)
-        const newQuestionArray = []
-        const tempArray = []
-        apiData.forEach(element => {
-            tempArray.push(element.correct_answer, ...element.incorrect_answers)
-            newQuestionArray.push(tempArray.splice(0,4))
-        })
-        for(let i = 0; i < apiData.length; i++) {
-<<<<<<< HEAD
-            this.randomSort(newQuestionArray[i])
-=======
-            console.log(newQuestionArray[i])
-        this.randomSort(newQuestionArray[i])
-        // newQuestionArray.forEach(element => this.randomSort(element))
-        //console.log(newQuestionArray[i])
->>>>>>> 28eca2c7fc91489f17b69e052907ef8367e1aed5
+        randomiseAnswers(apiData){
+            const newQuestionArray = []
+            const newAnswerArray = []
+            const tempArray = []
+            apiData.forEach(element => {
+                newQuestionArray.push(element.question)
+            })
+            
+           
+            apiData.forEach(element => {
+                tempArray.push(element.correct_answer, ...element.incorrect_answers)
+                newAnswerArray.push(tempArray.splice(0,4))
+            })
+            for(let i = 0; i < apiData.length; i++) {
+                this.randomSort(newAnswerArray[i])
+            }
+            
+            this.setState({questions:newQuestionArray})
+            this.setState({answers:newAnswerArray})
+            
         }
-        
-        this.setState({questions:newQuestionArray}) 
-    }
 
     componentDidMount() {
         this.apiCall().then(response => {
-            this.randomiseQuestions(response)
+            this.randomiseAnswers(response)
         })
         const numOfPlayers = this.props.location.state.numOfPlayers;
         let tempArray = []
         console.log(numOfPlayers)
         for (let i=0; i<numOfPlayers; i++){
-<<<<<<< HEAD
+
             tempArray.push([])
             
-=======
+
             this.state.userAnswers.push([]);
             //this.setState({userAnswers:[...this.state.userAnswers, {}]})
             console.log(this.state);
->>>>>>> 28eca2c7fc91489f17b69e052907ef8367e1aed5
+
         }
         this.setState({
             userAnswers: [...this.state.userAnswers,...tempArray]
@@ -111,30 +112,34 @@ class Question extends Component {
 
 
     render() { 
-        console.log(this.state.userAnswers)
         const questionItems = this.state.questions;
+        const answerItems = this.state.answers;
+        // const numOfPlayers = this.props.location.state.numOfPlayers;
+        console.log(this.state.userAnswers)
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
 
-                questionItems.map((item,index) => (
-                    <div key={index}>
-                    <h5>{questionItems.question}</h5>
+                answerItems.map((item,index) => (
+                    <div id={index} key={index}>
+                    <h5>{questionItems[index]}</h5>
                     <br />
                     <label>{item[0]}</label>
-                    <input type="radio" name='question' value={item[0]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[0]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[1]}</label>
-                    <input type="radio" name='question' value={item[1]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[1]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[2]}</label>
-                    <input type="radio" name="question" value={item[2]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[2]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[3]}</label>
-                    <input type="radio" name="question" value={item[3]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[3]} onChange={(event) => this.handleChange(event,index)} />
                     </div>
                 ))
 
                 :
-                <h3>Loading</h3>}                
+                <h3>Loading</h3>}    
+                <br />  
+                <button value="submit">Submit Answers</button>                    
                 </form>
             </div>
            );
