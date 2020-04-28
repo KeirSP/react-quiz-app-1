@@ -4,7 +4,10 @@
 * Purpose: Play a trivia game (alone or with a friend)
 * Result: Challenge knowledge & have fun with friend
 * Drop-down menu to select config (e.g. users / difficulty / category)
-* Select answer > click to go to next question > once complete, click to view result
+* I would like dropdown menus to choose the topic, category, number of players and number of questions
+* I would like to confirm my answers with a submit button
+* I would like to go to the next question once I click the answer to the previous question
+* I would like to view my results with a view result button 
 ## Day 1
 * Setup CRA & test framework (jest & enzyme)
 * Setup Routing in App.js
