@@ -7,6 +7,7 @@ class Question extends Component {
         this.state = {
             errorMessage: "",
             questions: [],
+            answers: [],
             userAnswers: [],
             currentPlayer: 0
          }
@@ -55,29 +56,35 @@ class Question extends Component {
         }
           
 
-    randomiseQuestions(apiData){
-        console.log(apiData)
+    randomiseAnswers(apiData){
         const newQuestionArray = []
+        const newAnswerArray = []
         const tempArray = []
         apiData.forEach(element => {
+            newQuestionArray.push(element.question)
+        })
+        // console.log(apiData[0].question)
+       
+        apiData.forEach(element => {
             tempArray.push(element.correct_answer, ...element.incorrect_answers)
-            newQuestionArray.push(tempArray.splice(0,4))
+            newAnswerArray.push(tempArray.splice(0,4))
         })
         for(let i = 0; i < apiData.length; i++) {
-            console.log(newQuestionArray[i])
-        this.randomSort(newQuestionArray[i])
-        // newQuestionArray.forEach(element => this.randomSort(element))
-        console.log(newQuestionArray[i])
+            // console.log(newAnswerArray[i])
+            this.randomSort(newAnswerArray[i])
+            // console.log(newAnswerArray[i])
         }
         
-        this.setState({questions:newQuestionArray}) 
+        this.setState({questions:newQuestionArray})
+        this.setState({answers:newAnswerArray})
+        
     }
 
     componentDidMount() {
         this.apiCall().then(response => {
-            this.randomiseQuestions(response)
+            this.randomiseAnswers(response)
         })
-        /* if (this.state.questions.length > 1){this.randomiseQuestions()} */
+        /* if (this.state.questions.length > 1){this.randomiseAnswers()} */
         const numOfPlayers = this.props.location.state.numOfPlayers;
         for (let i=0; i<numOfPlayers; i++){
             this.state.userAnswers.push([])
@@ -88,31 +95,35 @@ class Question extends Component {
 
     render() { 
         const questionItems = this.state.questions;
+        const answerItems = this.state.answers;
         const numOfPlayers = this.props.location.state.numOfPlayers;
         console.log(numOfPlayers);
         console.log(questionItems);
+        console.log(answerItems)
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
 
-                questionItems.map(item => (
-                    <div>
-                    <h5>{questionItems.question}</h5>
+                answerItems.map((item, index) => (
+                    <div id={index} key={index}>
+                    <h5>{questionItems[index]}</h5>
                     <br />
                     <label>{item[0]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[0]} />
+                    <input type="radio" name={index} value={item[0]} />
                     <label>{item[1]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[1]} />
+                    <input type="radio" name={index} value={item[1]} />
                     <label>{item[2]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[2]} />
+                    <input type="radio" name={index} value={item[2]} />
                     <label>{item[3]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[3]} />
+                    <input type="radio" name={index} value={item[3]} />
                     </div>
                 ))
-
+                
                 :
-                <h3>Loading</h3>}                
+                <h3>Loading</h3>} 
+                <br />  
+                <button value="submit">Submit Answers</button>        
                 </form>
             </div>
            );
