@@ -9,9 +9,10 @@ class Question extends Component {
             questions: [],
             answers: [],
             userAnswers: [],
+            numOfPlayers: this.props.location.state.numOfPlayers,
             currentPlayer: 0
          }
-         /* this.handleSubmit = this.handleSubmit.bind(this); */
+         this.handleSubmit = this.handleSubmit.bind(this);
          this.handleChange = this.handleChange.bind(this)
     }
 
@@ -19,25 +20,31 @@ class Question extends Component {
         const currentPlayer = this.state.currentPlayer;
         const value = event.target.value;
         let tempArray = {...this.state.userAnswers}
+        console.log(currentPlayer)
         tempArray[currentPlayer][index] = value
         this.setState({userAnswers:tempArray})
     }
 
- /*    handleSubmit(event) {
+    handleSubmit(event) {
         event.preventDefault();
-        const numOfPlayers = this.props.location.state.numOfPlayers;
+        const numOfPlayers = this.state.numOfPlayers
+        console.log(numOfPlayers)
         let currentPlayer =  this.state.currentPlayer;
-        if(currentPlayer<(numOfPlayers - 1)) {
-            currentPlayer ++;
-            this.state.userAnswers[currentPlayer].push();
+        event.target.reset()
+        if(currentPlayer < numOfPlayers) {
+            this.setState({currentPlayer: this.state.currentPlayer + 1})
             //rerender form
         } else {
             this.props.history.push({
-                pathname: '/results'
+                pathname: '/results',
+                state: {
+                    answers: this.state.answers,
+                    userAnswers: this.state.userAnswers
+                }
 
             })
         }
-    } */
+    }
 
     async apiCall(){
         console.log(this.props)
@@ -119,13 +126,13 @@ class Question extends Component {
                     <h5>{questionItems[index]}</h5>
                     <br />
                     <label>{item[0]}</label>
-                    <input type="radio" name={index} value={item[0]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[0]} onClick={(event) => this.handleChange(event,index)} />
                     <label>{item[1]}</label>
-                    <input type="radio" name={index} value={item[1]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[1]} onClick={(event) => this.handleChange(event,index)} />
                     <label>{item[2]}</label>
-                    <input type="radio" name={index} value={item[2]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[2]} onClick={(event) => this.handleChange(event,index)} />
                     <label>{item[3]}</label>
-                    <input type="radio" name={index} value={item[3]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[3]} onClick={(event) => this.handleChange(event,index)} />
                     </div>
                 ))
 
