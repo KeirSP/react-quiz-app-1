@@ -18,12 +18,12 @@ class Question extends Component {
     handleChange(event,index){
         const currentPlayer = this.state.currentPlayer;
         const value = event.target.value;
-        console.log(index,value)
-        this.state.userAnswers[currentPlayer].push(index,value)
-        console.log(this.state.userAnswers)
+        let tempArray = {...this.state.userAnswers}
+        tempArray[currentPlayer][index] = value
+        this.setState({userAnswers:tempArray})
     }
 
-/*     handleSubmit(event) {
+ /*    handleSubmit(event) {
         event.preventDefault();
         const numOfPlayers = this.props.location.state.numOfPlayers;
         let currentPlayer =  this.state.currentPlayer;
@@ -47,8 +47,6 @@ class Question extends Component {
         try{
             const apiResponse = await axios(`https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty}&type=multiple`)
             return apiResponse.data.results
-            /* this.setState({questions:apiResponse.data.results})
-            console.log(this.state.questions) */
         }
         catch(err){
             this.setState({errorMessage:err})
@@ -64,50 +62,45 @@ class Question extends Component {
         }
           
 
-        randomiseAnswers(apiData){
-            const newQuestionArray = []
-            const newAnswerArray = []
-            const tempArray = []
-            apiData.forEach(element => {
-                newQuestionArray.push(element.question)
-            })
-            
-           
-            apiData.forEach(element => {
-                tempArray.push(element.correct_answer, ...element.incorrect_answers)
-                newAnswerArray.push(tempArray.splice(0,4))
-            })
-            for(let i = 0; i < apiData.length; i++) {
-                this.randomSort(newAnswerArray[i])
-            }
-            
-            this.setState({questions:newQuestionArray})
-            this.setState({answers:newAnswerArray})
-            
+    randomiseAnswers(apiData){
+        const newQuestionArray = []
+        const newAnswerArray = []
+        const tempArray = []
+        apiData.forEach(element => {
+            newQuestionArray.push(element.question)
+        })
+        
+        
+        apiData.forEach(element => {
+            tempArray.push(element.correct_answer, ...element.incorrect_answers)
+            newAnswerArray.push(tempArray.splice(0,4))
+        })
+        for(let i = 0; i < apiData.length; i++) {
+            this.randomSort(newAnswerArray[i])
         }
+        
+        this.setState({questions:newQuestionArray})
+        this.setState({answers:newAnswerArray})
+        
+    }
 
     componentDidMount() {
         this.apiCall().then(response => {
             this.randomiseAnswers(response)
         })
         const numOfPlayers = this.props.location.state.numOfPlayers;
+        const numOfQuestions = this.props.location.state.questionAmount;
         let tempArray = []
-        console.log(numOfPlayers)
+        console.log(numOfPlayers, numOfQuestions)
         for (let i=0; i<numOfPlayers; i++){
-
             tempArray.push([])
-            
-
-            this.state.userAnswers.push([]);
-            //this.setState({userAnswers:[...this.state.userAnswers, {}]})
-            console.log(this.state);
-
+            /* for (let j=0; j < numOfQuestions; j++){
+                tempArray[i].push([])
+            } */
         }
         this.setState({
             userAnswers: [...this.state.userAnswers,...tempArray]
         })
-        console.log(tempArray)
-        console.log(this.state.userAnswers)
     }
 
 
@@ -139,7 +132,7 @@ class Question extends Component {
                 :
                 <h3>Loading</h3>}    
                 <br />  
-                <button value="submit">Submit Answers</button>                    
+                <button type="submit" value="submit">Submit Answers</button>                    
                 </form>
             </div>
            );
