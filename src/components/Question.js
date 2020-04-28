@@ -72,10 +72,14 @@ class Question extends Component {
             newQuestionArray.push(tempArray.splice(0,4))
         })
         for(let i = 0; i < apiData.length; i++) {
+<<<<<<< HEAD
+            this.randomSort(newQuestionArray[i])
+=======
             console.log(newQuestionArray[i])
         this.randomSort(newQuestionArray[i])
         // newQuestionArray.forEach(element => this.randomSort(element))
         //console.log(newQuestionArray[i])
+>>>>>>> 28eca2c7fc91489f17b69e052907ef8367e1aed5
         }
         
         this.setState({questions:newQuestionArray}) 
@@ -86,17 +90,28 @@ class Question extends Component {
             this.randomiseQuestions(response)
         })
         const numOfPlayers = this.props.location.state.numOfPlayers;
+        let tempArray = []
         console.log(numOfPlayers)
         for (let i=0; i<numOfPlayers; i++){
+<<<<<<< HEAD
+            tempArray.push([])
+            
+=======
             this.state.userAnswers.push([]);
             //this.setState({userAnswers:[...this.state.userAnswers, {}]})
             console.log(this.state);
+>>>>>>> 28eca2c7fc91489f17b69e052907ef8367e1aed5
         }
-        console.log(this.state.userAnswers);
+        this.setState({
+            userAnswers: [...this.state.userAnswers,...tempArray]
+        })
+        console.log(tempArray)
+        console.log(this.state.userAnswers)
     }
 
 
     render() { 
+        console.log(this.state.userAnswers)
         const questionItems = this.state.questions;
         return (
             <div>
