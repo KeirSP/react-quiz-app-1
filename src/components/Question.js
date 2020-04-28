@@ -29,16 +29,9 @@ class Question extends Component {
     }
 
     randomSort(array){
-        var currentIndex = array.length, temporaryValue, randomIndex;
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
         return array
         }
@@ -52,10 +45,14 @@ class Question extends Component {
             tempArray.push(element.correct_answer, ...element.incorrect_answers)
             newQuestionArray.push(tempArray.splice(0,4))
         })
-        console.log(newQuestionArray)
-        newQuestionArray.forEach(element => this.randomSort(element))
-        console.log(newQuestionArray)
-        /* this.setState({questions:newQuestionArray}) */
+        for(let i = 0; i < apiData.length; i++) {
+            console.log(newQuestionArray[i])
+        this.randomSort(newQuestionArray[i])
+        // newQuestionArray.forEach(element => this.randomSort(element))
+        console.log(newQuestionArray[i])
+        }
+        
+        this.setState({questions:newQuestionArray}) 
     }
 
     componentDidMount() {
@@ -75,17 +72,17 @@ class Question extends Component {
                 
                 questionItems.map(item => (
                     <div>
-                    <h5>{item.question}</h5>
+                    <h5>{questionItems.question}</h5>
                     <br />
-                    <label>{item.correct_answer}</label>
-                    <input type="radio" name="question" id={item.index} value={item.correct_answer} />
-                    <label>{item.incorrect_answers[0]}</label>
-                    <input type="radio" name="question" id={item.index} value={item.incorrect_answers[0]} />
-                    <label>{item.incorrect_answers[1]}</label>
-                    <input type="radio" name="question" id={item.index} value={item.incorrect_answers[1]} />
-                    <label>{item.incorrect_answers[2]}</label>
-                    <input type="radio" name="question" id={item.index} value={item.incorrect_answers[2]} />
-                    </div> 
+                    <label>{item[0]}</label>
+                    <input type="radio" name="question" id={item.index} value={item[0]} />
+                    <label>{item[1]}</label>
+                    <input type="radio" name="question" id={item.index} value={item[1]} />
+                    <label>{item[2]}</label>
+                    <input type="radio" name="question" id={item.index} value={item[2]} />
+                    <label>{item[3]}</label>
+                    <input type="radio" name="question" id={item.index} value={item[3]} />
+                    </div>
                 ))
                 
                 :
@@ -100,3 +97,7 @@ class Question extends Component {
 
 
 export default Question;
+
+
+
+                    
