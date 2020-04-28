@@ -10,25 +10,33 @@ class Question extends Component {
             userAnswers: [],
             currentPlayer: 0
          }
-         this.handleSubmit = this.handleSubmit.bind(this);
+         /* this.handleSubmit = this.handleSubmit.bind(this); */
+         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleSubmit(event) {
+    handleChange(event,index){
+        event.preventDefault();
+        const value = event.target.value;
+        console.log(index,value)
+        this.setState({userAnswers:{index:value}})
+        console.log(this.state.userAnswers)
+    }
+
+/*     handleSubmit(event) {
+        event.preventDefault();
         const numOfPlayers = this.props.location.state.numOfPlayers;
-        const currentPlayer =  this.state.currentPlayer;
+        let currentPlayer =  this.state.currentPlayer;
         if(currentPlayer<(numOfPlayers - 1)) {
-            event.preventDefault();
             currentPlayer ++;
             this.state.userAnswers[currentPlayer].push();
             //rerender form
         } else {
-            event.preventDefault();
             this.props.history.push({
                 pathname: '/results'
 
             })
         }
-    }
+    } */
 
     async apiCall(){
         console.log(this.props)
@@ -77,10 +85,10 @@ class Question extends Component {
         this.apiCall().then(response => {
             this.randomiseQuestions(response)
         })
-        /* if (this.state.questions.length > 1){this.randomiseQuestions()} */
         const numOfPlayers = this.props.location.state.numOfPlayers;
+        console.log(numOfPlayers)
         for (let i=0; i<numOfPlayers; i++){
-            this.state.userAnswers.push([])
+            this.setState({userAnswers:[...this.state.userAnswers, {}]})
         }
         console.log(this.state.userAnswers);
     }
@@ -88,26 +96,23 @@ class Question extends Component {
 
     render() { 
         const questionItems = this.state.questions;
-        const numOfPlayers = this.props.location.state.numOfPlayers;
-        console.log(numOfPlayers);
-        console.log(questionItems);
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
 
-                questionItems.map(item => (
-                    <div>
+                questionItems.map((item,index) => (
+                    <div key={index}>
                     <h5>{questionItems.question}</h5>
                     <br />
                     <label>{item[0]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[0]} />
+                    <input type="radio" name="question" value={item[0]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[1]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[1]} />
+                    <input type="radio" name="question" value={item[1]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[2]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[2]} />
+                    <input type="radio" name="question" value={item[2]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[3]}</label>
-                    <input type="radio" name="question" id={item.index} value={item[3]} />
+                    <input type="radio" name="question" value={item[3]} onChange={(event) => this.handleChange(event,index)} />
                     </div>
                 ))
 
