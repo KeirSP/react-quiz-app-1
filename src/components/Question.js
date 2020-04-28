@@ -15,10 +15,10 @@ class Question extends Component {
     }
 
     handleChange(event,index){
-        event.preventDefault();
+        const currentPlayer = this.state.currentPlayer;
         const value = event.target.value;
         console.log(index,value)
-        this.setState({userAnswers:{index:value}})
+        this.state.userAnswers[currentPlayer].push(index,value)
         console.log(this.state.userAnswers)
     }
 
@@ -75,7 +75,7 @@ class Question extends Component {
             console.log(newQuestionArray[i])
         this.randomSort(newQuestionArray[i])
         // newQuestionArray.forEach(element => this.randomSort(element))
-        console.log(newQuestionArray[i])
+        //console.log(newQuestionArray[i])
         }
         
         this.setState({questions:newQuestionArray}) 
@@ -88,7 +88,9 @@ class Question extends Component {
         const numOfPlayers = this.props.location.state.numOfPlayers;
         console.log(numOfPlayers)
         for (let i=0; i<numOfPlayers; i++){
-            this.setState({userAnswers:[...this.state.userAnswers, {}]})
+            this.state.userAnswers.push([]);
+            //this.setState({userAnswers:[...this.state.userAnswers, {}]})
+            console.log(this.state);
         }
         console.log(this.state.userAnswers);
     }
@@ -106,9 +108,9 @@ class Question extends Component {
                     <h5>{questionItems.question}</h5>
                     <br />
                     <label>{item[0]}</label>
-                    <input type="radio" name="question" value={item[0]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name='question' value={item[0]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[1]}</label>
-                    <input type="radio" name="question" value={item[1]} onChange={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name='question' value={item[1]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[2]}</label>
                     <input type="radio" name="question" value={item[2]} onChange={(event) => this.handleChange(event,index)} />
                     <label>{item[3]}</label>
