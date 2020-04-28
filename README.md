@@ -8,6 +8,8 @@
 * I would like to confirm my answers with a submit button
 * I would like to go to the next question once I click the answer to the previous question
 * I would like to view my results with a view result button 
+* I would like to see what questions I got correctly and incorrectly 
+* In multiplayer mode, I would like to know which player got the most correct answers
 ## Day 1
 * Setup CRA & test framework (jest & enzyme)
 * Setup Routing in App.js
