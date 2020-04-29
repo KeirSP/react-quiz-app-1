@@ -23,3 +23,10 @@
 * Medyen: Work on randomisation & multi-player (form refresh without making API call). No blocker
 * Huseyin: Work on randomisation & multi-player. No blocker
 #### Possibly Mob programming, as not many independent functions
+* Completed randomisation & form. Completed handling of user answers, depending on amount of players. Started looking at submit button feature. Continued with simple testing & reading about tests
+## Day 3
+# Standup
+* Huseyin: Complete submit button. Move onto either testing or results page. Blocker - completing submit button
+* Keir: Start working on results page. Possible blocker - data from quiz page needs to be available (once Huseyin has completed)
+* Medyen: Start looking into testing. No blockers
+* Igor: Continue with testing. No blockers
