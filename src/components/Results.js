@@ -15,7 +15,7 @@ class Results extends Component {
         const numOfPlayers = this.state.numOfPlayers;
         console.log(numOfPlayers)
         const tempArray = [];
-        for (let i=0; i<numOfPlayers; i++){
+        for (let i=0; i< numOfPlayers; i++){
             tempArray.push(0)
         }
         this.setState({
@@ -27,15 +27,15 @@ class Results extends Component {
     compareAnswers() {
         const correctAnswers = this.state.correctAnswers;
         const userAnswers = this.state.userAnswers;
-        const playerScore = this.state.playerScore;
+
         const numOfPlayers = this.state.numOfPlayers;
-        /* console.log(userAnswers.length);
-        console.log(userAnswers[0].length) */
-        console.log(playerScore)
+        const tempArray = []
         for(let i = 0; i < numOfPlayers; i++) {
+            tempArray.push(0)
             for(let j = 0; j < userAnswers[i].length; j++) {
                 if (userAnswers[i][j] === correctAnswers[j]) {
-                    // something with setState
+                    tempArray[i] += 1
+                    this.setState({playerScore:tempArray})
                 }
             }
         }
@@ -43,8 +43,8 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        /* console.log(this.state.correctAnswers);
-        console.log(this.state.userAnswers); */
+        console.log(this.state.correctAnswers);
+        console.log(this.state.userAnswers);
         this.createScoreArrays();
 
     }
@@ -54,7 +54,7 @@ class Results extends Component {
         return (
             <div className="leaderboard">
                 <div>
-                    <h3>{this.state.playerScore}</h3>
+                    <h3>hi</h3>
                 </div>
             </div>
         )
