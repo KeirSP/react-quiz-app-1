@@ -3,6 +3,9 @@ import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Question.css';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 
 class Question extends Component {
     constructor(props) {
@@ -123,7 +126,9 @@ class Question extends Component {
         //console.log(this.state.userAnswers)
         return (
             <div className="questionSpace" >
-                <h2>{`Player ${this.state.currentPlayer + 1}`}</h2>
+                <div id="playerTitle">
+                    <h2>{`Player ${this.state.currentPlayer + 1}`}</h2>
+                </div>
                 <Form id="quizForm" onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
 
@@ -142,14 +147,16 @@ class Question extends Component {
                 ))
 
                 :
-                <h3>Loading...</h3>}    
-                <Button className="submitAnswers" variant="light" type="submit" value="Submit Answer">Submit Answers</Button>    
+                <h3>Loading...</h3>} 
+                <div className="submitAnswers">
+                
+                <Button  variant="light" type="submit" value="Submit Answer">Submit Answers</Button>
+                </div>
                 </Form>
             </div>
            );
     }
 }
-
 
 
 

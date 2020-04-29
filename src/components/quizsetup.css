@@ -1,18 +1,18 @@
 #form {
     margin-left: auto;
     margin-right: auto;
-    width : 50vw;
+    width : 60vw;
     padding: 20px;
-    box-shadow: 0 0 30px #ddd;
+    /* box-shadow: 0 0 10px #ddd; */
     border: 10px;   
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.30);
     
     
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 3rem;
     padding: 10px;
     color: white;
 }
@@ -23,3 +23,27 @@
     color: white;
 }
 
+.opening {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width : 95vw;
+    padding: 20px;
+    /* box-shadow: 0 0 10px #ddd; */
+    border: 10px;   
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.30);
+}
+
+.qmarkLogo {
+    width: 15vw;
+}
+
+.qmarkSpace {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;   
+}

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import './quizsetup.css';
 
 
@@ -45,14 +48,25 @@ class Setup extends Component {
     render() { 
         return ( 
             <div>
-                <div>
-                    <h1 class="title">Welcome to Quiz City!</h1>
-                    <p className="quizinfo">Do you love quizzes? </p>
-                    <p className="quizinfo">Are you eager for challenging questions and a fun user experience? </p>
-                    <p className="quizinfo">Do you want to beat your friends in multiplayer mode? </p>
-                    <p className="quizinfo">Then you've come to the right place, simply complete the configuration form below 
-                        to start your quiz journey!</p>
-                    <p className="quizinfo">Who will claim the throne in Quiz City? </p>
+                <div className="opening" >
+                <Container fluid>
+                    <Row>
+                        <Col sm={9} >
+                            <h1 class="title">Welcome to Quiz City!</h1>
+                            <p className="quizinfo">Do you love quizzes? </p>
+                            <p className="quizinfo">Are you eager for challenging questions and a fun user experience? </p>
+                            <p className="quizinfo">Do you want to beat your friends in multiplayer mode? </p>
+                            <p className="quizinfo">Then you've come to the right place; simply complete the configuration form below 
+                                to start your quiz journey!</p>
+                            <p className="quizinfo">Who will claim the throne in Quiz City? </p>
+                        </Col>
+                        <Col className="qmarkSpace">
+                            <img alt="question mark logo" className="qmarkLogo"
+                            src="https://www.pinclipart.com/picdir/big/391-3915175_convention-networking-sponsorship-questions-icon-question-mark-square.png"
+                            />
+                        </Col>
+                    </Row>
+                </Container>
                 </div>
                 <Form id="form" onSubmit={this.handleSubmit}>
                     <Form.Group controlId="form-difficulty">

@@ -1,10 +1,11 @@
 .App {
   background-image: url(https://images.unsplash.com/photo-1521729839347-131a32f9abcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9);
   height: 100vh;
-  background-position: center;
+  background-position: topcenter;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: scroll;
+  background-attachment: fixed;
+  overflow-y: scroll;
   color: white;
 }
 
