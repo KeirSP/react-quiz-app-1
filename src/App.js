@@ -8,14 +8,16 @@ import NavigationBar from "./components/NavigationBar"
 
 function App() {
   return (
-    <BrowserRouter>
-    <NavigationBar />
-    <Switch>
-      <Route exact path="/" component={Setup} />
-      <Route path="/quiz" component={Question} />
-      <Route path="/results" component={Results} />
-    </Switch>
-  </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+      <NavigationBar />
+        <Switch>
+          <Route exact path="/" component={Setup} />
+          <Route path="/quiz" component={Question} />
+          <Route path="/results" component={Results} />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 

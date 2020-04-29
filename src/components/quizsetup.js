@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import './quizsetup.css';
 
 
 class Setup extends Component {
@@ -43,64 +44,75 @@ class Setup extends Component {
 
     render() { 
         return ( 
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="form-difficulty">
-                <Form.Label htmlFor="difficultyDropdown">Difficulty</Form.Label>
-                    <Form.Control as="select"
-                    name = "difficulty"
-                    className="difficultyDropDown"
-                    value = {this.state.difficulty}
-                    onChange={this.handleChange}
-                    >
-                        <option value="easy" defaultValue="selected">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="form-category">
-                <Form.Label htmlFor="categoryDropdown">Category</Form.Label>
-                    <Form.Control as="select"
-                    name = "category"
-                    className="categoryDropDown"
-                    value = {this.state.category}
-                    onChange={this.handleChange}
-                    >
-                        <option value="9" defaultValue="selected">General Knowledge</option>
-                        <option value="21">Sports</option>
-                        <option value="17">Science & Nature</option>
-                        <option value="23">History</option>
-                        <option value="28">Vehicles</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="form-questions">
-                <Form.Label htmlFor="numberOfQuestionsDropdown">Number of questions</Form.Label>
-                    <Form.Control as="select"
-                    name = "questionAmount"
-                    className="numberOfQuestionsDropdown"
-                    value = {this.state.questionAmount}
-                    onChange={this.handleChange}
-                    >
-                        <option value="5" defaultValue="selected">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                <Form.Label htmlFor="numberOfPlayersDropdown">Number of players</Form.Label>
-                    <Form.Control as="select"
-                    name = "numOfPlayers"
-                    className="numberOfPlayersDropdown"
-                    value = {this.state.questionAmount}
-                    onChange={this.handleChange}
-                    >
-                        <option value="1" defaultValue="selected">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </Form.Control>
-                </Form.Group>
-                <Button type="submit" value="Start Quiz">Start Quiz!</Button>
-            </Form>
+            <div>
+                <div>
+                    <h1 class="title">Welcome to Quiz City!</h1>
+                    <p className="quizinfo">Do you love quizzes? </p>
+                    <p className="quizinfo">Are you eager for challenging questions and a fun user experience? </p>
+                    <p className="quizinfo">Do you want to beat your friends in multiplayer mode? </p>
+                    <p className="quizinfo">Then you've come to the right place, simply complete the configuration form below 
+                        to start your quiz journey!</p>
+                    <p className="quizinfo">Who will claim the throne in Quiz City? </p>
+                </div>
+                <Form id="form" onSubmit={this.handleSubmit}>
+                    <Form.Group controlId="form-difficulty">
+                    <Form.Label htmlFor="difficultyDropdown">Difficulty</Form.Label>
+                        <Form.Control as="select"
+                        name = "difficulty"
+                        className="difficultyDropDown"
+                        value = {this.state.difficulty}
+                        onChange={this.handleChange}
+                        >
+                            <option value="easy" defaultValue="selected">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="form-category">
+                    <Form.Label htmlFor="categoryDropdown">Category</Form.Label>
+                        <Form.Control as="select"
+                        name = "category"
+                        className="categoryDropDown"
+                        value = {this.state.category}
+                        onChange={this.handleChange}
+                        >
+                            <option value="9" defaultValue="selected">General Knowledge</option>
+                            <option value="21">Sports</option>
+                            <option value="17">Science & Nature</option>
+                            <option value="23">History</option>
+                            <option value="28">Vehicles</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="form-questions">
+                    <Form.Label htmlFor="numberOfQuestionsDropdown">Number of questions</Form.Label>
+                        <Form.Control as="select"
+                        name = "questionAmount"
+                        className="numberOfQuestionsDropdown"
+                        value = {this.state.questionAmount}
+                        onChange={this.handleChange}
+                        >
+                            <option value="5" defaultValue="selected">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                    <Form.Label htmlFor="numberOfPlayersDropdown">Number of players</Form.Label>
+                        <Form.Control as="select"
+                        name = "numOfPlayers"
+                        className="numberOfPlayersDropdown"
+                        value = {this.state.questionAmount}
+                        onChange={this.handleChange}
+                        >
+                            <option value="1" defaultValue="selected">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Button variant="light" type="submit" value="Start Quiz">Start Quiz!</Button>
+                </Form>
+            </div>
          );
     }
 }

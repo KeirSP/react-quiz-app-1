@@ -8,8 +8,10 @@ class NavigationBar extends Component {
         return (
             <div>
                 <Navbar bg="dark" variant="info">
+                <Navbar.Brand href="#home">Quiz City</Navbar.Brand>
                     <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="https://github.com/hus-o/react-quiz-app">About</Nav.Link>
                     </Nav>
                 </Navbar>
             </div>
