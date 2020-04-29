@@ -49,12 +49,32 @@ class Results extends Component {
         console.log(questions.length)
         const {correctAnswers} = this.state
         const {userAnswers} = this.state
+        const {numOfPlayers} = this.state
         const combinedData = []
         for (let i=0;i<questions.length;i++){
             combinedData.push([])
-            combinedData[i].push([questions,correctAnswers,userAnswers])
+            combinedData[i].push(questions[i],correctAnswers[i])
+            for (let j=0; j<(numOfPlayers);j++){
+                combinedData[i].push(userAnswers[j][i])
+                }
         }
         this.setState({combinedData:combinedData})
+    }
+
+    renderTableData(){
+        const {combinedData} = this.state
+        return(
+        combinedData.map((quiz) => (
+            <tr>
+                {quiz.map(element => (
+                    <td>
+                        {element}
+                    </td>
+                ))}
+            </tr>
+            
+        ))
+        )
     }
 
     componentDidMount() {
@@ -68,6 +88,7 @@ class Results extends Component {
     render() {
         const { playerScore } = this.state
         const {combinedData} = this.state
+        console.log(combinedData)
         return (
             <React.Fragment>
             <div className="leaderboard">
@@ -86,11 +107,8 @@ class Results extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {combinedData.map(() => (
-                        <td></td> // not complete
-                    ))}
+                    {this.renderTableData()}
                 </tbody>
-                
             </table>
             </div>
             </React.Fragment>
