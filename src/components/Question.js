@@ -13,10 +13,11 @@ class Question extends Component {
             currentPlayer: 0
          }
          this.handleSubmit = this.handleSubmit.bind(this);
-         this.handleChange = this.handleChange.bind(this)
+         this.handleClick = this.handleClick.bind(this)
     }
 
-    handleChange(event,index){
+    // Puts user answers into correct place in userAnswers state
+    handleClick(event,index){
         const currentPlayer = this.state.currentPlayer;
         const value = event.target.value;
         let tempArray = {...this.state.userAnswers}
@@ -25,21 +26,23 @@ class Question extends Component {
         this.setState({userAnswers:tempArray})
     }
 
+    // Handles whether to go to results page or continue to next player
     handleSubmit(event) {
         event.preventDefault();
         const numOfPlayers = this.state.numOfPlayers
         console.log(numOfPlayers)
         let currentPlayer =  this.state.currentPlayer;
-        event.target.reset()
-        if(currentPlayer < numOfPlayers) {
+        event.target.reset() //rerender form
+        if(currentPlayer < (numOfPlayers - 1)) {
             this.setState({currentPlayer: this.state.currentPlayer + 1})
-            //rerender form
-        } else {
+        }
+        else {
             this.props.history.push({
                 pathname: '/results',
                 state: {
                     answers: this.state.answers,
-                    userAnswers: this.state.userAnswers
+                    userAnswers: this.state.userAnswers,
+                    questions: this.state.questions
                 }
 
             })
@@ -101,9 +104,6 @@ class Question extends Component {
         console.log(numOfPlayers, numOfQuestions)
         for (let i=0; i<numOfPlayers; i++){
             tempArray.push([])
-            /* for (let j=0; j < numOfQuestions; j++){
-                tempArray[i].push([])
-            } */
         }
         this.setState({
             userAnswers: [...this.state.userAnswers,...tempArray]
@@ -114,32 +114,32 @@ class Question extends Component {
     render() { 
         const questionItems = this.state.questions;
         const answerItems = this.state.answers;
-        // const numOfPlayers = this.props.location.state.numOfPlayers;
         console.log(this.state.userAnswers)
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <h2>{`Player ${this.state.currentPlayer + 1}`}</h2>
+                <form id="quizForm" onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
 
                 answerItems.map((item,index) => (
-                    <div id={index} key={index}>
+                    <div id="quizQuestions" key={index}>
                     <h5>{questionItems[index]}</h5>
                     <br />
                     <label>{item[0]}</label>
-                    <input type="radio" name={index} value={item[0]} onClick={(event) => this.handleChange(event,index)} />
+                    <input required type="radio" name={index} value={item[0]} onClick={(event) => this.handleClick(event,index)} />
                     <label>{item[1]}</label>
-                    <input type="radio" name={index} value={item[1]} onClick={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[1]} onClick={(event) => this.handleClick(event,index)} />
                     <label>{item[2]}</label>
-                    <input type="radio" name={index} value={item[2]} onClick={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[2]} onClick={(event) => this.handleClick(event,index)} />
                     <label>{item[3]}</label>
-                    <input type="radio" name={index} value={item[3]} onClick={(event) => this.handleChange(event,index)} />
+                    <input type="radio" name={index} value={item[3]} onClick={(event) => this.handleClick(event,index)} />
                     </div>
                 ))
 
                 :
                 <h3>Loading</h3>}    
                 <br />  
-                <button type="submit" value="submit">Submit Answers</button>                    
+                <input type="submit" value="Submit Answer" />       
                 </form>
             </div>
            );
