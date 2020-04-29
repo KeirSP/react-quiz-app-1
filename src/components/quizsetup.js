@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 
 class Setup extends Component {
     constructor(props){
@@ -40,9 +43,10 @@ class Setup extends Component {
 
     render() { 
         return ( 
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="difficultyDropdown">Difficulty</label>
-                    <select
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="form-difficulty">
+                <Form.Label htmlFor="difficultyDropdown">Difficulty</Form.Label>
+                    <Form.Control as="select"
                     name = "difficulty"
                     className="difficultyDropDown"
                     value = {this.state.difficulty}
@@ -51,9 +55,11 @@ class Setup extends Component {
                         <option value="easy" defaultValue="selected">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
-                    </select>
-                <label htmlFor="categoryDropdown">Category</label>
-                    <select
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="form-category">
+                <Form.Label htmlFor="categoryDropdown">Category</Form.Label>
+                    <Form.Control as="select"
                     name = "category"
                     className="categoryDropDown"
                     value = {this.state.category}
@@ -64,9 +70,11 @@ class Setup extends Component {
                         <option value="17">Science & Nature</option>
                         <option value="23">History</option>
                         <option value="28">Vehicles</option>
-                    </select>
-                <label htmlFor="numberOfQuestionsDropdown">Number of questions</label>
-                    <select
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="form-questions">
+                <Form.Label htmlFor="numberOfQuestionsDropdown">Number of questions</Form.Label>
+                    <Form.Control as="select"
                     name = "questionAmount"
                     className="numberOfQuestionsDropdown"
                     value = {this.state.questionAmount}
@@ -75,9 +83,11 @@ class Setup extends Component {
                         <option value="5" defaultValue="selected">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
-                    </select>
-                <label htmlFor="numberOfPlayersDropdown">Number of players</label>
-                    <select
+                    </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                <Form.Label htmlFor="numberOfPlayersDropdown">Number of players</Form.Label>
+                    <Form.Control as="select"
                     name = "numOfPlayers"
                     className="numberOfPlayersDropdown"
                     value = {this.state.questionAmount}
@@ -87,9 +97,10 @@ class Setup extends Component {
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                    </select>
-                <input type="submit" value="Start Quiz" />
-            </form>
+                    </Form.Control>
+                </Form.Group>
+                <Button type="submit" value="Start Quiz">Start Quiz!</Button>
+            </Form>
          );
     }
 }
