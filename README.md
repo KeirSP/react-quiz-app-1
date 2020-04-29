@@ -9,7 +9,9 @@
 * I would like to go to the next question once I click the answer to the previous question
 * I would like to view my results with a view result button 
 * I would like to see what questions I got correctly and incorrectly 
+* I would like a clean and easy UI
 * In multiplayer mode, I would like to know which player got the most correct answers
+* In multiplayer mode, I would like to see a leaderboard displaying the results of each player
 ## Day 1
 * Setup CRA & test framework (jest & enzyme)
 * Setup Routing in App.js
