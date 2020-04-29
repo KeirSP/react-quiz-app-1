@@ -7,6 +7,8 @@ class Results extends Component {
             numOfPlayers: this.props.location.state.numOfPlayers,
             userAnswers: this.props.location.state.userAnswers,
             correctAnswers: this.props.location.state.correctAnswers,
+            questions: this.props.location.state.questions,
+            combinedData: [],
             playerScore: []
         }
     }
@@ -42,24 +44,56 @@ class Results extends Component {
 
     }
 
+    combinedDataArray(){
+        const {questions} = this.state
+        console.log(questions.length)
+        const {correctAnswers} = this.state
+        const {userAnswers} = this.state
+        const combinedData = []
+        for (let i=0;i<questions.length;i++){
+            combinedData.push([])
+            combinedData[i].push([questions,correctAnswers,userAnswers])
+        }
+        this.setState({combinedData:combinedData})
+    }
+
     componentDidMount() {
         console.log(this.state.correctAnswers);
         console.log(this.state.userAnswers);
         this.createScoreArrays();
+        this.combinedDataArray()
 
     }
 
     render() {
         const { playerScore } = this.state
-        console.log(playerScore)
+        const {combinedData} = this.state
         return (
+            <React.Fragment>
             <div className="leaderboard">
                 {playerScore.map((score, index) => (
                     <h3 key={index}>{`Player${index+1} Score: ${score}`}</h3>
                 ))
-
                 }
             </div>
+            <div className="resultsDetails">
+            <table className="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Questions</th>
+                        <th>Answer</th> 
+                        {playerScore.map((score,index) => (<th key={index}>{`Player ${index+1}`}</th>))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {combinedData.map(() => (
+                        <td></td> // not complete
+                    ))}
+                </tbody>
+                
+            </table>
+            </div>
+            </React.Fragment>
         )
     }
 }
