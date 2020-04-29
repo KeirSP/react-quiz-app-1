@@ -11,7 +11,7 @@ class NavigationBar extends Component {
                 <Navbar.Brand href="/">Quiz City</Navbar.Brand>
                     <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="https://github.com/hus-o/react-quiz-app">About</Nav.Link>
+                    <Nav.Link href="https://github.com/hus-o/react-quiz-app/blob/master/README.md">About</Nav.Link>
                     </Nav>
                 </Navbar>
             </div>
