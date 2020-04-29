@@ -10,6 +10,7 @@ function App() {
     <Switch>
       <Route exact path="/" component={Setup} />
       <Route path="/quiz" component={Question} />
+      <Route path="/results" component={Results} />
     </Switch>
   </BrowserRouter>
   );
