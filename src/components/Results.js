@@ -50,12 +50,15 @@ class Results extends Component {
     }
 
     render() {
-        console.log(this.state.playerScore)
+        const { playerScore } = this.state
+        console.log(playerScore)
         return (
             <div className="leaderboard">
-                <div>
-                    <h3>hi</h3>
-                </div>
+                {playerScore.map((score, index) => (
+                    <h3 key={index}>{`Player${index+1} Score: ${score}`}</h3>
+                ))
+
+                }
             </div>
         )
     }
