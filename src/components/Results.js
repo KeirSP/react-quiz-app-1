@@ -13,31 +13,29 @@ class Results extends Component {
 
     createScoreArrays() {
         const numOfPlayers = this.state.numOfPlayers;
+        console.log(numOfPlayers)
         const tempArray = [];
         for (let i=0; i<numOfPlayers; i++){
             tempArray.push(0)
         }
         this.setState({
-            playerScore: [...this.state.playerScore,...tempArray]
-        })
+            playerScore: [...this.state.playerScore,...tempArray]}, this.compareAnswers
+        )
+        console.log(tempArray)
     };
 
     compareAnswers() {
-        this.createScoreArrays();
         const correctAnswers = this.state.correctAnswers;
         const userAnswers = this.state.userAnswers;
         const playerScore = this.state.playerScore;
         const numOfPlayers = this.state.numOfPlayers;
-        console.log(userAnswers.length);
-        console.log(userAnswers[0].length)
+        /* console.log(userAnswers.length);
+        console.log(userAnswers[0].length) */
+        console.log(playerScore)
         for(let i = 0; i < numOfPlayers; i++) {
-            console.log(i);
             for(let j = 0; j < userAnswers[i].length; j++) {
-                console.log(userAnswers[i]);
                 if (userAnswers[i][j] === correctAnswers[j]) {
-                    console.log(playerScore[i]);
-                    playerScore[i]++;
-                    console.log(playerScore);
+                    // something with setState
                 }
             }
         }
@@ -45,19 +43,18 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.correctAnswers);
-        console.log(this.state.userAnswers);
-        this.compareAnswers();
+        /* console.log(this.state.correctAnswers);
+        console.log(this.state.userAnswers); */
+        this.createScoreArrays();
 
     }
 
     render() {
-        const numOfPlayers = this.state.numOfPlayers;
-
+        console.log(this.state.playerScore)
         return (
             <div className="leaderboard">
                 <div>
-                    <h3>Placeholder</h3>
+                    <h3>{this.state.playerScore}</h3>
                 </div>
             </div>
         )
