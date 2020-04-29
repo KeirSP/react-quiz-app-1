@@ -10,7 +10,8 @@ class Question extends Component {
             answers: [],
             userAnswers: [],
             numOfPlayers: this.props.location.state.numOfPlayers,
-            currentPlayer: 0
+            currentPlayer: 0,
+            correctAnswers: []
          }
          this.handleSubmit = this.handleSubmit.bind(this);
          this.handleClick = this.handleClick.bind(this)
@@ -21,7 +22,7 @@ class Question extends Component {
         const currentPlayer = this.state.currentPlayer;
         const value = event.target.value;
         let tempArray = {...this.state.userAnswers}
-        console.log(currentPlayer)
+        //console.log(currentPlayer)
         tempArray[currentPlayer][index] = value
         this.setState({userAnswers:tempArray})
     }
@@ -30,7 +31,7 @@ class Question extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const numOfPlayers = this.state.numOfPlayers
-        console.log(numOfPlayers)
+        //console.log(numOfPlayers)
         let currentPlayer =  this.state.currentPlayer;
         event.target.reset() //rerender form
         if(currentPlayer < (numOfPlayers - 1)) {
@@ -40,7 +41,7 @@ class Question extends Component {
             this.props.history.push({
                 pathname: '/results',
                 state: {
-                    answers: this.state.answers,
+                    correctAnswers: this.state.correctAnswers,
                     userAnswers: this.state.userAnswers,
                     questions: this.state.questions,
                     numOfPlayers: this.state.numOfPlayers
@@ -51,7 +52,7 @@ class Question extends Component {
     }
 
     async apiCall(){
-        console.log(this.props)
+        //console.log(this.props)
         const questionAmount = this.props.location.state.questionAmount;
         const category = this.props.location.state.category;
         const difficulty = this.props.location.state.difficulty;
@@ -62,6 +63,7 @@ class Question extends Component {
         catch(err){
             this.setState({errorMessage:err})
         }
+        
     }
     
     randomSort(array){
@@ -77,12 +79,14 @@ class Question extends Component {
         const newQuestionArray = []
         const newAnswerArray = []
         const tempArray = []
+        const correctAnswerArray = []
         apiData.forEach(element => {
             newQuestionArray.push(element.question)
         })
         
         
         apiData.forEach(element => {
+            correctAnswerArray.push(element.correct_answer)
             tempArray.push(element.correct_answer, ...element.incorrect_answers)
             newAnswerArray.push(tempArray.splice(0,4))
         })
@@ -90,9 +94,9 @@ class Question extends Component {
             this.randomSort(newAnswerArray[i])
         }
         
+        this.setState({correctAnswers: correctAnswerArray})
         this.setState({questions:newQuestionArray})
-        this.setState({answers:newAnswerArray})
-        
+        this.setState({answers:newAnswerArray})        
     }
 
     componentDidMount() {
@@ -100,9 +104,7 @@ class Question extends Component {
             this.randomiseAnswers(response)
         })
         const numOfPlayers = this.props.location.state.numOfPlayers;
-        const numOfQuestions = this.props.location.state.questionAmount;
         let tempArray = []
-        console.log(numOfPlayers, numOfQuestions)
         for (let i=0; i<numOfPlayers; i++){
             tempArray.push([])
         }
@@ -115,7 +117,7 @@ class Question extends Component {
     render() { 
         const questionItems = this.state.questions;
         const answerItems = this.state.answers;
-        console.log(this.state.userAnswers)
+        //console.log(this.state.userAnswers)
         return (
             <div>
                 <h2>{`Player ${this.state.currentPlayer + 1}`}</h2>
