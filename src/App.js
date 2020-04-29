@@ -3,6 +3,7 @@ import './App.css';
 import Setup from "./components/quizsetup"
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import Question from "./components/Question"
+import Results from "./components/Results"
 
 function App() {
   return (

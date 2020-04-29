@@ -42,7 +42,8 @@ class Question extends Component {
                 state: {
                     answers: this.state.answers,
                     userAnswers: this.state.userAnswers,
-                    questions: this.state.questions
+                    questions: this.state.questions,
+                    numOfPlayers: this.state.numOfPlayers
                 }
 
             })
