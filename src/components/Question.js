@@ -3,6 +3,8 @@ import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Question.css';
+const {htmlEscape, htmlUnescape} = require('escape-goat');
+
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -63,7 +65,11 @@ class Question extends Component {
         const category = this.props.location.state.category;
         const difficulty = this.props.location.state.difficulty;
         try{
-            const apiResponse = await axios(`https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty}&type=multiple`)
+            const apiResponse = await axios({
+                url: `https://opentdb.com/api.php?amount=${questionAmount}&category=${category}&difficulty=${difficulty}&type=multiple`,
+                responseEncoding: 'utf8'
+            })
+            console.log(apiResponse)
             return apiResponse.data.results
         }
         catch(err){
@@ -99,7 +105,7 @@ class Question extends Component {
         for(let i = 0; i < apiData.length; i++) {
             this.randomSort(newAnswerArray[i])
         }
-        
+
         this.setState({correctAnswers: correctAnswerArray})
         this.setState({questions:newQuestionArray})
         this.setState({answers:newAnswerArray})        
@@ -119,7 +125,6 @@ class Question extends Component {
         })
     }
 
-
     render() { 
         const questionItems = this.state.questions;
         const answerItems = this.state.answers;
@@ -131,10 +136,9 @@ class Question extends Component {
                 </div>
                 <Form id="quizForm" onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
-
                 answerItems.map((item,index) => (
                     <div id="quizQuestions" key={index}>
-                    <h5>{questionItems[index]}</h5>
+                    <h5>{htmlUnescape(questionItems[index])}</h5>
                     <input required type="radio" name={index} value={item[0]} onClick={(event) => this.handleClick(event,index)} />
                     <label>{item[0]}</label>
                     <input type="radio" name={index} value={item[1]} onClick={(event) => this.handleClick(event,index)} />
