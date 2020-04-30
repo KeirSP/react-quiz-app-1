@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import './Question.css';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
@@ -147,7 +148,12 @@ class Question extends Component {
                 ))
 
                 :
-                <h3>Loading...</h3>} 
+                <div className="progressBar">
+                    <br />
+                    <ProgressBar animated variant="info" now={100} />
+                    <br />
+                </div>
+                } 
                 <div className="submitAnswers">
                 
                 <Button  variant="light" type="submit" value="Submit Answer">Submit Answers</Button>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Table from 'react-bootstrap/Table'
+import './Results.css'
 
 class Results extends Component {
     constructor(props) {
@@ -22,14 +24,15 @@ class Results extends Component {
         }
         this.setState({
             playerScore: [...this.state.playerScore,...tempArray]}, this.compareAnswers
+            
         )
+        
         console.log(tempArray)
     };
 
     compareAnswers() {
         const correctAnswers = this.state.correctAnswers;
         const userAnswers = this.state.userAnswers;
-
         const numOfPlayers = this.state.numOfPlayers;
         const tempArray = []
         for(let i = 0; i < numOfPlayers; i++) {
@@ -77,28 +80,53 @@ class Results extends Component {
         )
     }
 
+
+
     componentDidMount() {
         console.log(this.state.correctAnswers);
         console.log(this.state.userAnswers);
         this.createScoreArrays();
-        this.combinedDataArray()
+        this.combinedDataArray();
+        
 
     }
 
     render() {
         const { playerScore } = this.state
-        const {combinedData} = this.state
+        const { combinedData } = this.state
         console.log(combinedData)
+        console.log(playerScore)
+
         return (
             <React.Fragment>
-            <div className="leaderboard">
-                {playerScore.map((score, index) => (
-                    <h3 key={index}>{`Player${index+1} Score: ${score}`}</h3>
-                ))
-                }
-            </div>
+            
+                <div className="leaderboard">
+                    <h2 className="resultsHeading">Quiz City Leaderboard</h2>
+                    <Table bordered className="leaderboardTable">
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Scores</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                            playerScore.map((score, index) => (
+                            <tr>
+                                <td key={index}>{`Player ${index+1}`}</td>
+                                <td>{score}</td>
+                            </tr>
+                            ))
+                            }
+                        </tbody>
+                    
+                    </Table>
+                </div>
+            
+            
             <div className="resultsDetails">
-            <table className="resultsTable">
+            <h2 className="resultsHeading">Question Results and Answers</h2>
+            <Table striped bordered hover className="resultsTable">
                 <thead>
                     <tr>
                         <th>Questions</th>
@@ -109,7 +137,10 @@ class Results extends Component {
                 <tbody>
                     {this.renderTableData()}
                 </tbody>
-            </table>
+            </Table>
+            <div>
+
+            </div>
             </div>
             </React.Fragment>
         )
