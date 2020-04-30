@@ -51,7 +51,7 @@ class Setup extends Component {
                 <Container fluid>
                     <Row>
                         <Col sm={9} >
-                            <h1 class="title">Welcome to Quiz City!</h1>
+                            <h1 className="title">Welcome to Quiz City!</h1>
                             <p className="quizinfo">Do you love quizzes? </p>
                             <p className="quizinfo">Are you eager for challenging questions and a fun user experience? </p>
                             <p className="quizinfo">Do you want to beat your friends in multiplayer mode? </p>
