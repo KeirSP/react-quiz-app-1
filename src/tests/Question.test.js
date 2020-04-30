@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
-import Question from './components/Question';
+import Question from '../components/Question';
 import { spy } from 'sinon';
 
 

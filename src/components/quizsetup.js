@@ -68,7 +68,7 @@ class Setup extends Component {
                 </Container>
                 </div>
                 <Form id="form" onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="form-difficulty">
+                    <Form.Group id="form-difficulty">
                     <Form.Label htmlFor="difficultyDropdown">Difficulty</Form.Label>
                         <Form.Control as="select"
                         name = "difficulty"
@@ -81,7 +81,7 @@ class Setup extends Component {
                             <option value="hard">Hard</option>
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="form-category">
+                    <Form.Group id="form-category">
                     <Form.Label htmlFor="categoryDropdown">Category</Form.Label>
                         <Form.Control as="select"
                         name = "category"
@@ -96,7 +96,7 @@ class Setup extends Component {
                             <option value="28">Vehicles</option>
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="form-questions">
+                    <Form.Group id="form-questions">
                     <Form.Label htmlFor="numberOfQuestionsDropdown">Number of questions</Form.Label>
                         <Form.Control as="select"
                         name = "questionAmount"
@@ -109,7 +109,7 @@ class Setup extends Component {
                             <option value="15">15</option>
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group id="form-players">
                     <Form.Label htmlFor="numberOfPlayersDropdown">Number of players</Form.Label>
                         <Form.Control as="select"
                         name = "numOfPlayers"
