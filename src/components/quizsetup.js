@@ -23,12 +23,10 @@ class Setup extends Component {
 
      handleChange(event) {
         const value = event.target.value;
-        console.log(value)
         this.setState({
             ...this.state,
             [event.target.name]: value
          });
-        console.log(this.state)
       }
 
       handleSubmit(event) {
