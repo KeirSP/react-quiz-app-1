@@ -5,29 +5,23 @@ import Results from '../components/Results';
 
 
 describe("Results Page", () => {
-    beforeEach(() => {
+
+    //beforeEach(() => {
         const mockEvent = {
             state: {
                 numOfPlayers: '2',
-                userAnswers: '5',
+                userAnswers: [[],[]],
                 correctAnswers: '2',
                 questions: '5'
-            }
-        }
-        const wrapper = shallow(<Results location={mockEvent}/>);
-        })
+            }}
+        const wrapper = shallow(<Results location={mockEvent}/>)
     
-    // it('renders without crashing', ()=>{
-        
-    //     const div = document.createElement('div');
-    //     ReactDOM.render(<Results />,div);
-    //     ReactDOM.unmountComponentAtNode(div);
-    // });
+    it('renders without crashing', ()=>{
+        expect(wrapper.find('div')).toHaveLength(3);
+     });
 
     it('should render the leaderboard', () => {
-        wrapper.setState({...mockState});
-        // expect(wrapper.find('.leaderboard').exists()).toBe(true);
-        expect(wrapper).to.have.length(1);
+        expect(wrapper.find('.leaderboard').exists()).toBe(true);
     })
 
     // it('calls componentDidMount', () => {
@@ -36,4 +30,3 @@ describe("Results Page", () => {
     //     expect(Results.prototype.componentDidMount.mock.calls.length).toBe(1)
     //   })
 })
-
