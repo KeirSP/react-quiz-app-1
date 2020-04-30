@@ -18,7 +18,7 @@ class Question extends Component {
             questions: [],
             answers: [],
             userAnswers: [],
-            numOfPlayers: this.props.location.state.numOfPlayers,
+            //numOfPlayers: this.props.location.state.numOfPlayers,
             currentPlayer: 0,
             correctAnswers: []
          }
@@ -116,14 +116,14 @@ class Question extends Component {
         this.apiCall().then(response => {
             this.randomiseAnswers(response)
         })
-        const numOfPlayers = this.props.location.state.numOfPlayers;
-        let tempArray = []
-        for (let i=0; i<numOfPlayers; i++){
-            tempArray.push([])
-        }
-        this.setState({
-            userAnswers: [...this.state.userAnswers,...tempArray]
-        })
+        // const numOfPlayers = this.props.location.state.numOfPlayers;
+        // let tempArray = []
+        // for (let i=0; i<numOfPlayers; i++){
+        //     tempArray.push([])
+        // }
+        // this.setState({
+        //     userAnswers: [...this.state.userAnswers,...tempArray]
+        // })
     }
 
     render() { 
