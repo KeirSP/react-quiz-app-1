@@ -22,7 +22,6 @@ class Setup extends Component {
     }
 
      handleChange(event) {
-        event.preventDefault()
         const value = event.target.value;
         console.log(value)
         this.setState({
