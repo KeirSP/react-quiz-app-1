@@ -40,3 +40,9 @@ label {
     border-width: 2px;
     border-color: white;
 }
+
+.progressBar {
+    width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+}

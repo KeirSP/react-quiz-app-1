@@ -115,7 +115,7 @@ class Setup extends Component {
                         <Form.Control as="select"
                         name = "numOfPlayers"
                         className="numberOfPlayersDropdown"
-                        value = {this.state.questionAmount}
+                        value = {this.state.numOfPlayers}
                         onChange={this.handleChange}
                         >
                             <option value="1" defaultValue="selected">1</option>

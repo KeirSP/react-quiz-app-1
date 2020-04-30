@@ -1,0 +1,32 @@
+.resultsDetails {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.resultsTable {
+    background: rgba(0, 0, 0, 0.20);
+}
+
+.leaderboard {
+    width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    
+    
+}
+
+.leaderboardTable {
+    background: rgba(0, 0, 0, 0.20);
+    
+}
+
+.resultsHeading {
+    text-align: center;
+}
+
+th, td {
+    color: white;
+}
