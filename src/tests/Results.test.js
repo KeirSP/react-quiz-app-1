@@ -12,7 +12,8 @@ describe("Results Page", () => {
                 numOfPlayers: '2',
                 userAnswers: [[],[]],
                 correctAnswers: '2',
-                questions: '5'
+                questions: '5',
+                playerScore: []
             }}
         const wrapper = shallow(<Results location={mockEvent}/>)
     
@@ -27,7 +28,7 @@ describe("Results Page", () => {
     it('creates the correct number of arrays: ', () =>{
         const spy = jest.spyOn(Results.prototype, 'createScoreArrays');
         wrapper.instance().createScoreArrays();
-        expect(this.state.playerScore).toEqual(2);
+        expect(wrapper.state[playerScore]).toEqual(expect.arrayContaining([[0][0]]));
     });
 
     it('calls componentDidMount', () => {
