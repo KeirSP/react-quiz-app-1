@@ -3,32 +3,6 @@ import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
 import Question from '../components/Question';
 import { spy } from 'sinon';
-import {createMemoryHistory} from "history"
-import { Router } from "react-router";
-import { render} from '@testing-library/react'
-
-
-// describe("Quiz setup", () => {
-//     let wrapper;
-//     let response={
-//         correct_answer:"boo",
-//         incorrect_answer:"kaboo",
-
-
-//     }
-    
-//     beforeEach(() => {
-        
-//         wrapper = shallow(<Question />);
-//     });
-
-// it("fetches the data from async function", async() => {
-
-
-// });
-
-
-// });
 
 
 describe('Login Test Suite', () => {
@@ -39,7 +13,7 @@ describe('Login Test Suite', () => {
     }
     it('should render the form', () => {
         const wrapper = shallow(<Question location={mockEvent}/>);
-        expect(wrapper.find('form').exists()).toBe(true);
+        expect(wrapper.find('#quizForm').exists()).toBe(true);
         expect(wrapper.find('div').exists()).toBe(true);
     })
     it('calls componentDidMount', () => {
@@ -56,6 +30,7 @@ describe('Basic Functions for Questions module: ', ()=>{
         }
     }
     const wrapper=shallow(<Question location={mockEvent}/>);
+    
     it('randomSort function is tested with letters: ', () =>{
         
         const array=["a","b"];
@@ -80,23 +55,17 @@ describe('Basic Functions for Questions module: ', ()=>{
             incorrect_answers:["Bad11","Very Bad11","Very Very Bad11"]
             }
         ]
-        const expected= [
+        const expected = 
             {
-            question:"How was your day?",
-            correct_answer:"Good",
-            incorrect_answers:["Bad","Very Bad","Very Very Bad"]
-            },
-            {
-            question:"How was your day11?",
-            correct_answer:"Good11",
-            incorrect_answers:["Bad11","Very Bad11","Very Very Bad11"]
+            question: ["How was your day?", "How was your day11?"],
+            correct_answer:["Good", "Good11"],
+            answers: [["Good", "Bad","Very Bad","Very Very Bad"],["Good11","Bad11","Very Bad11","Very Very Bad11"]]
+            
             }
-        ]
-        console.log(apiData);
-        console.log(expected);
+        // testing expectation of expected.answers will not work as it is randomised - this is tested above
         wrapper.instance().randomiseAnswers(apiData);
-        
-        expect(wrapper.state()).toEqual(expect.not.objectContaining(apiData));
+        expect(wrapper.state("questions")).toEqual(expected.question)
+        expect(wrapper.state("correctAnswers")).toEqual(expected.correct_answer)
     });
    
         // it('fetches successfully data from an API', async () => {
