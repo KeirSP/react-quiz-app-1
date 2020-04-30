@@ -2,9 +2,9 @@
     padding: 10px;
 }
 #quizQuestions {
-    /* border-style: solid;
+    border-style: solid;
     border-width: 2px;
-    border-color: white; */
+    border-color: white;
     border-radius: 5px;
     margin: 10px;
     padding: 5px;
@@ -36,4 +36,7 @@ label {
     margin-right: auto;
     text-align: center;
     background: rgba(0, 0, 0, 0.30);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
 }
