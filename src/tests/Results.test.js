@@ -24,9 +24,15 @@ describe("Results Page", () => {
         expect(wrapper.find('.leaderboard').exists()).toBe(true);
     })
 
-    // it('calls componentDidMount', () => {
-    //     jest.spyOn(Results.prototype, 'componentDidMount')
-    //     const wrapper = shallow(<Results />)
-    //     expect(Results.prototype.componentDidMount.mock.calls.length).toBe(1)
-    //   })
+    it('creates the correct number of arrays: ', () =>{
+        const spy = jest.spyOn(Results.prototype, 'createScoreArrays');
+        wrapper.instance().createScoreArrays();
+        expect(this.state.playerScore).toEqual(2);
+    });
+
+    it('calls componentDidMount', () => {
+        const spy = jest.spyOn(Results.prototype, 'componentDidMount');
+        wrapper.instance().componentDidMount();
+        expect(spy).toHaveBeenCalled();;
+       })
 })
