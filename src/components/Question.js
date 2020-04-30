@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import axios from "axios"
+import axios from "axios";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import './Question.css';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 
 class Question extends Component {
     constructor(props) {
@@ -119,36 +125,38 @@ class Question extends Component {
         const answerItems = this.state.answers;
         //console.log(this.state.userAnswers)
         return (
-            <div>
-                <h2>{`Player ${this.state.currentPlayer + 1}`}</h2>
-                <form id="quizForm" onSubmit={this.handleSubmit}>
+            <div className="questionSpace" >
+                <div id="playerTitle">
+                    <h2>{`Player ${this.state.currentPlayer + 1}`}</h2>
+                </div>
+                <Form id="quizForm" onSubmit={this.handleSubmit}>
                 {questionItems.length > 0 ?
 
                 answerItems.map((item,index) => (
                     <div id="quizQuestions" key={index}>
                     <h5>{questionItems[index]}</h5>
-                    <br />
-                    <label>{item[0]}</label>
                     <input required type="radio" name={index} value={item[0]} onClick={(event) => this.handleClick(event,index)} />
-                    <label>{item[1]}</label>
+                    <label>{item[0]}</label>
                     <input type="radio" name={index} value={item[1]} onClick={(event) => this.handleClick(event,index)} />
-                    <label>{item[2]}</label>
+                    <label>{item[1]}</label>
                     <input type="radio" name={index} value={item[2]} onClick={(event) => this.handleClick(event,index)} />
-                    <label>{item[3]}</label>
+                    <label>{item[2]}</label>
                     <input type="radio" name={index} value={item[3]} onClick={(event) => this.handleClick(event,index)} />
+                    <label>{item[3]}</label>
                     </div>
                 ))
 
                 :
-                <h3>Loading</h3>}    
-                <br />  
-                <input type="submit" value="Submit Answer" />       
-                </form>
+                <h3>Loading...</h3>} 
+                <div className="submitAnswers">
+                
+                <Button  variant="light" type="submit" value="Submit Answer">Submit Answers</Button>
+                </div>
+                </Form>
             </div>
            );
     }
 }
-
 
 
 
