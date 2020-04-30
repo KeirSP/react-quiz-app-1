@@ -32,3 +32,10 @@
 * Keir: Start working on results page. Possible blocker - data from quiz page needs to be available (once Huseyin has completed)
 * Medyen: Start looking into testing. No blockers
 * Igor: Continue with testing. No blockers
+* Completed results page, with a leaderboard and answer details. Testing complete to 40% overall coverage. Started some styling
+## Day 4
+# Standup
+* Huseyin: Check to see if I can improve the table rendering code to give unique IDs. Then styling / testing. No blockers
+* Keir: Try to finish off styling / testing. No blockers
+* Igor: Finish off testing - resolve some bugs. No blockers
+* Medyen: Try to finish off styling / testing. No blockers
