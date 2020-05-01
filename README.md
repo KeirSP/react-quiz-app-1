@@ -19,30 +19,30 @@
 * Created component for API call
 * Created component for Question View and mapped out the questions retrieved from the API call
 ## Day 2
-# Standup
+### Standup
 * Keir: Today work on multi-player functionality. No blocker
 * Igor: Possibly add randomisation (answers) function & work on multi-player. No blocker
 * Medyen: Work on randomisation & multi-player (form refresh without making API call). No blocker
 * Huseyin: Work on randomisation & multi-player. No blocker
 * Possibly Mob programming, as not many independent functions
-# Update
+### Update
 * Completed randomisation & form. Completed handling of user answers, depending on amount of players. Started looking at submit button feature. Continued with simple testing & reading about tests
 ## Day 3
-# Standup
+### Standup
 * Huseyin: Complete submit button. Move onto either testing or results page. Blocker - completing submit button
 * Keir: Start working on results page. Possible blocker - data from quiz page needs to be available (once Huseyin has completed)
 * Medyen: Start looking into testing. No blockers
 * Igor: Continue with testing. No blockers
-# Update
+### Update
 * Completed results page, with a leaderboard and answer details. Testing complete to 40% overall coverage. Started some styling
 ## Day 4
-# Standup
+### Standup
 * Huseyin: Check to see if I can improve the table rendering code to give unique IDs. Then styling / testing. No blockers
 * Keir: Try to finish off styling / testing. No blockers
 * Igor: Finish off testing - resolve some bugs. No blockers
 * Medyen: Try to finish off styling / testing. No blockers
-# Update
+### Update
 Updated styling for last page & fixed issue with testing (question.test.js), getting decent % coverage.
 ## Day 5
-# Standup
+### Standup
 Everyone: at most continue with testing, everything else is done and hits brief targets
