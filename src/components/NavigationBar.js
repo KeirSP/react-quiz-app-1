@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav'
 const NavigationBar = () => {
     return ( 
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar id="navbar" bg="dark" variant="dark">
             <Navbar.Brand href="/">
             <img
                 alt="question mark logo"
