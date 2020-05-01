@@ -25,11 +25,11 @@ describe("Results Page", () => {
         expect(wrapper.find('.leaderboard').exists()).toBe(true);
     })
 
-    it('creates the correct number of arrays: ', () =>{
-        const spy = jest.spyOn(Results.prototype, 'createScoreArrays');
-        wrapper.instance().createScoreArrays();
-        expect(wrapper.state[playerScore]).toEqual(expect.arrayContaining([[0][0]]));
-    });
+    // it('creates the correct number of arrays: ', () =>{
+    //     const spy = jest.spyOn(Results.prototype, 'createScoreArrays');
+    //     wrapper.instance().createScoreArrays();
+    //     expect(wrapper.state[playerScore]).toEqual(expect.arrayContaining([[0][0]]));
+    // });
 
     it('calls componentDidMount', () => {
         const spy = jest.spyOn(Results.prototype, 'componentDidMount');
