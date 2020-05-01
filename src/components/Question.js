@@ -43,6 +43,7 @@ class Question extends Component {
         //console.log(numOfPlayers)
         let currentPlayer =  this.state.currentPlayer;
         event.target.reset() //rerender form
+        document.getElementById("navbar").scrollIntoView()
         if(currentPlayer < (numOfPlayers - 1)) {
             this.setState({currentPlayer: this.state.currentPlayer + 1})
         }
