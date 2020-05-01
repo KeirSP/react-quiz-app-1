@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { mount, shallow } from 'enzyme';
 import Question from '../components/Question';
 import { spy } from 'sinon';
+import {createMemoryHistory} from "history"
+import { Router } from "react-router";
+import { render} from '@testing-library/react'
 
 
 // describe("Quiz setup", () => {
@@ -29,23 +32,30 @@ import { spy } from 'sinon';
 
 
 describe('Login Test Suite', () => {
-
+    const mockEvent={
+        state:{
+            numOfPlayers:1
+        }
+    }
     it('should render the form', () => {
-        const wrapper = shallow(<Question />);
-
-        //expect(wrapper.find('form').exists()).toBe(true);
+        const wrapper = shallow(<Question location={mockEvent}/>);
+        expect(wrapper.find('form').exists()).toBe(true);
         expect(wrapper.find('div').exists()).toBe(true);
     })
     it('calls componentDidMount', () => {
         jest.spyOn(Question.prototype, 'componentDidMount')
-        const wrapper = shallow(<Question />)
+        const wrapper = shallow(<Question location={mockEvent}/>)
         expect(Question.prototype.componentDidMount.mock.calls.length).toBe(1)
       })
 })
+
 describe('Basic Functions for Questions module: ', ()=>{
-
-    const wrapper=shallow(<Question />);
-
+    const mockEvent={
+        state:{
+            numOfPlayers:1
+        }
+    }
+    const wrapper=shallow(<Question location={mockEvent}/>);
     it('randomSort function is tested with letters: ', () =>{
         
         const array=["a","b"];
